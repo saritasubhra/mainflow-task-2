@@ -22,6 +22,7 @@ function Home() {
         throw new Error("Failed to fetch");
       }
       setMovies(data.Search);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
