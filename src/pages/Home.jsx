@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import MovieCard from "../components/MovieCard";
 
-const KEY = "745de33f";
-
 function Home() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("superman");
 
   useEffect(() => {
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(import.meta.env.VITE_KEY);
 
   async function fetchMovies() {
     try {
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        `http://www.omdbapi.com/?apikey=${import.meta.env.VITE_KEY}&s=${query}`
       );
       const data = await res.json();
       if (!res.ok) {

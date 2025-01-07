@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const KEY = "745de33f";
-
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState();
 
   useEffect(() => {
-    // fetchMovieByID();
+    fetchMovieByID();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fetchMovieByID() {
     try {
-      const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&i=${id}`);
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${import.meta.env.VITE_KEY}&i=${id}`
+      );
       const data = await res.json();
       if (!res.ok) {
         throw new Error("Failed to fetch");
       }
       setMovie(data);
-      console.log(res);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
